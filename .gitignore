@@ -1,0 +1,19 @@
+# Maven
+target/
+!.mvn/wrapper/maven-wrapper.jar
+
+# IntelliJ IDEA
+.idea/
+*.iml
+out/
+
+
+# OS - arquivos inúteis do sistema
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+
+# Arquivos compilados Java
+*.class
