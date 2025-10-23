@@ -14,10 +14,10 @@ public class ProductsCollectionRepository {
 
     private static List <Product>  productList;
 
-    static  {
-
-        productList = new Vector<Product>();
-
+//    static  {
+//
+//        productList = new Vector<Product>();
+//
 //        Product cell = new Product();
 //
 //        cell.setName("Iphone 14 Pro Max")
@@ -27,8 +27,8 @@ public class ProductsCollectionRepository {
 //                .setPrice(BigDecimal.valueOf(12000));
 //
 //        save(cell);
-
-    }
+//
+//    }
 
     public static List <Product> findAll()
     {

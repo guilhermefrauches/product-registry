@@ -20,9 +20,9 @@ public class Main {
             switch (options) {
                 case REGISTER_CATEGORY -> registerCategory();
                 case REGISTER_PRODUCT -> registerProduct();
+                case CHANGE_PRODUCT -> changeProduct();
                 case VIEW_PRODUCT_BY_ID -> viewProductById();
                 case VIEW_PRODUCT_BY_CATEGORY -> viewProductByCategory();
-                case CHANGE_PRODUCT -> changeProduct();
                 case FINISH -> finish();
             }
 
@@ -44,9 +44,12 @@ public class Main {
         ProductsCollectionRepository.save(product);
         ProductView.sucess(product);
     }
+    private static void changeProduct() {
+        Product product = ProductView.select(null);
+        ProductView.update(product);
+    }
     private static void viewProductById() {}
     private static void viewProductByCategory() {}
-    private static void changeProduct() {}
     private static void finish() {
         System.exit(0);
     }

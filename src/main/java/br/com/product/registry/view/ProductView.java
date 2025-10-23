@@ -46,7 +46,7 @@ public class ProductView {
         }while (price <= 0);
 
 
-        Product ret = new Product()
+        Product ret = product
                 .setCategory(category)
                 .setName(name)
                 .setDescription(description)
@@ -85,7 +85,7 @@ public class ProductView {
     private static void show(Product product) {
         System.out.println(product );
 
-        String formattedText = String.format( "PRODUCT" + product.getName() + System.lineSeparator()
+        String formattedText = String.format( "PRODUCT: " + product.getName() + System.lineSeparator()
                 + "DESCRIPTION: " + product.getDescription() + System.lineSeparator()
                 + "CATEGORY: " + product.getCategory().toString() + System.lineSeparator()
                 + "PRICE: %,.2f ", product.getPrice()
