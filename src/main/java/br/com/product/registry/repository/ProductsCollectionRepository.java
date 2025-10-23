@@ -30,6 +30,11 @@ public class ProductsCollectionRepository {
 
     }
 
+    public static List <Product> findAll()
+    {
+        return productList;
+    }
+
     public static Product save(Product product) {
         if (!productList.contains(product)) {
             product.setId((long) productList.size() + 1);

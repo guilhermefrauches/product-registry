@@ -1,10 +1,13 @@
 package br.com.product.registry;
 
 import br.com.product.registry.model.Category;
+import br.com.product.registry.model.Product;
 import br.com.product.registry.repository.CategoryCollectionRepository;
+import br.com.product.registry.repository.ProductsCollectionRepository;
 import br.com.product.registry.view.CategoryView;
 import br.com.product.registry.view.Options;
 import br.com.product.registry.view.OptionsView;
+import br.com.product.registry.view.ProductView;
 
 public class Main {
     public static void main(String[] args) {
@@ -30,11 +33,17 @@ public class Main {
     private static void registerCategory() {
 
         CategoryView view = new CategoryView();
-        Category category =  view.form();
+        Category category =  view.form(new  Category());
         CategoryCollectionRepository.save(category);
         view.sucess(category);
+
     }
-    private static void registerProduct() {}
+    private static void registerProduct() {
+
+        Product product = ProductView.form(new  Product());
+        ProductsCollectionRepository.save(product);
+        ProductView.sucess(product);
+    }
     private static void viewProductById() {}
     private static void viewProductByCategory() {}
     private static void changeProduct() {}

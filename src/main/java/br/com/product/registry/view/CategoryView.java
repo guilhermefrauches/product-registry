@@ -28,8 +28,8 @@ public class CategoryView {
         JOptionPane.showMessageDialog(null, "Category " + category.getName() + " saved successfully!");
     }
 
-    public static Category form(){
-        String name = JOptionPane.showInputDialog(null, "Enter the category name");
+    public static Category form(Category category){
+        String name = JOptionPane.showInputDialog(null, "Enter the category name", category!= null? category.getName(): "");
         return  new Category(name);
     }
 
