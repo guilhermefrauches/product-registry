@@ -82,7 +82,7 @@ public class ProductView {
 
     }
 
-    private static void show(Product product) {
+    public static void show(Product product) {
         System.out.println(product );
 
         String formattedText = String.format( "PRODUCT: " + product.getName() + System.lineSeparator()

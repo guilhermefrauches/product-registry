@@ -1,5 +1,6 @@
 package br.com.product.registry.repository;
 
+import br.com.product.registry.model.Category;
 import br.com.product.registry.model.Product;
 
 import javax.swing.*;
@@ -14,21 +15,21 @@ public class ProductsCollectionRepository {
 
     private static List <Product>  productList;
 
-//    static  {
-//
-//        productList = new Vector<Product>();
-//
-//        Product cell = new Product();
-//
-//        cell.setName("Iphone 14 Pro Max")
-//                .setDescription("Cell Phone of the apple")
-//                .setCategory(CategoryCollectionRepository.findById(2L))
-//                .setCreationDate(LocalDateTime.now())
-//                .setPrice(BigDecimal.valueOf(12000));
-//
-//        save(cell);
-//
-//    }
+    static  {
+
+        productList = new Vector<Product>();
+
+        Product cell = new Product();
+
+        cell.setName("Iphone 14 Pro Max")
+                .setDescription("Cell Phone of the apple")
+                .setCategory(CategoryCollectionRepository.findById(2L))
+                .setCreationDate(LocalDateTime.now())
+                .setPrice(BigDecimal.valueOf(12000));
+
+        save(cell);
+
+    }
 
     public static List <Product> findAll()
     {
@@ -45,5 +46,9 @@ public class ProductsCollectionRepository {
             return null;
         }
 
+    }
+
+    public static List<Product> findByCategory(Category category) {
+        return productList.stream().filter(product -> product.getCategory().equals(category)).toList();
     }
 }

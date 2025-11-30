@@ -1,6 +1,7 @@
 package br.com.product.registry.repository;
 
 import br.com.product.registry.model.Category;
+import br.com.product.registry.model.Product;
 
 import javax.swing.*;
 import java.util.List;

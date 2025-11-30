@@ -9,6 +9,9 @@ import br.com.product.registry.view.Options;
 import br.com.product.registry.view.OptionsView;
 import br.com.product.registry.view.ProductView;
 
+import javax.swing.*;
+import java.util.List;
+
 public class Main {
     public static void main(String[] args) {
 
@@ -49,7 +52,18 @@ public class Main {
         ProductView.update(product);
     }
     private static void viewProductById() {}
-    private static void viewProductByCategory() {}
+    private static void viewProductByCategory() {
+        Category category = CategoryView.select(null);
+
+        List<Product> products = ProductsCollectionRepository.findByCategory(category);
+
+        if(products.isEmpty()){
+            JOptionPane.showMessageDialog(null, "Nothing found in category: " +category.getName()+ "!");
+        }else {
+            products.forEach(ProductView::show);
+            products.forEach(System.out::println);
+        }
+    }
     private static void finish() {
         System.exit(0);
     }
