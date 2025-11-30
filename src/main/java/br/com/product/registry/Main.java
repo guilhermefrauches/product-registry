@@ -51,7 +51,28 @@ public class Main {
         Product product = ProductView.select(null);
         ProductView.update(product);
     }
-    private static void viewProductById() {}
+    private static void viewProductById() {
+        String inputId = JOptionPane.showInputDialog(null, "Digite o ID do Produto:");
+
+        if (inputId == null || inputId.trim().isEmpty()) {
+            return;
+        }
+
+        try {
+            Long id = Long.parseLong(inputId);
+
+            Product product = ProductsCollectionRepository.findById(id);
+
+            if (product != null) {
+                ProductView.show(product); // Mostra o produto se achou
+            } else {
+                JOptionPane.showMessageDialog(null, "There is no product with ID: " + id);
+            }
+
+        } catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(null, "Invalid ID! Please enter only numbers!");
+        }
+    }
     private static void viewProductByCategory() {
         Category category = CategoryView.select(null);
 

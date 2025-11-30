@@ -51,4 +51,11 @@ public class ProductsCollectionRepository {
     public static List<Product> findByCategory(Category category) {
         return productList.stream().filter(product -> product.getCategory().equals(category)).toList();
     }
+
+    public static Product findById(Long id) {
+        return productList.stream()
+                .filter(p -> p.getId().equals(id))
+                .findFirst()
+                .orElse(null);
+    }
 }
