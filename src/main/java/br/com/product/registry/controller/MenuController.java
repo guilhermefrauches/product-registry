@@ -82,7 +82,6 @@ public class MenuController {
     }
 
     private void viewProductById() {
-        // Validação: Tem produto?
         if (ProductsCollectionRepository.findAll().isEmpty()) {
             JOptionPane.showMessageDialog(null, "No products registered!");
             return;
@@ -110,7 +109,6 @@ public class MenuController {
     }
 
     private void viewProductByCategory() {
-        // Validação: Tem categoria?
         if (CategoryCollectionRepository.findAll().isEmpty()) {
             JOptionPane.showMessageDialog(null, "No categories registered!");
             return;
@@ -118,7 +116,7 @@ public class MenuController {
 
         Category category = CategoryView.select(null);
 
-        if (category == null) return; // Cancelou
+        if (category == null) return;
 
         List<Product> products = ProductsCollectionRepository.findByCategory(category);
 
