@@ -1,8 +1,6 @@
 # 📦 Product Registry (Java Core Edition)
 
 ![Java](https://img.shields.io/badge/Java-17%2B-ED8B00?style=for-the-badge&logo=openjdk&logoColor=white)
-![Status](https://img.shields.io/badge/Status-Fase%201%20Concluída-blue?style=for-the-badge)
-
 > **Sistema de gerenciamento de produtos desenvolvido para consolidar os fundamentos da linguagem Java e Orientação a Objetos.**
 
 ---
