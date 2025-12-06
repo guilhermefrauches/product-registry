@@ -1,30 +1,13 @@
 package br.com.product.registry.repository;
 
 import br.com.product.registry.model.Category;
-import br.com.product.registry.model.Product;
-
-import javax.swing.*;
+import java.util.ArrayList;
 import java.util.List;
-import java.util.Vector;
-
 public class CategoryCollectionRepository {
 
-    private static List<Category> categoryList;
-
-    static {
-
-        categoryList = new Vector<>();
-
-        Category electronics = new Category("Electronics", 1l);
-        Category CellPhones = new Category("Cell Phones", 2l);
-        Category Books = new Category("Books", 3l);
+    private static final List<Category> categoryList = new ArrayList<>();
 
 
-        categoryList.add(electronics);
-        categoryList.add(CellPhones);
-        categoryList.add(Books);
-
-    }
 
     public static List<Category> findAll() {
         return categoryList;
@@ -37,7 +20,6 @@ public class CategoryCollectionRepository {
                 .orElse(null);
     }
 
-
     public static List<Category> findByName(String name) {
         return categoryList.stream()
                 .filter(c -> c.getName().equalsIgnoreCase(name))
@@ -49,10 +31,9 @@ public class CategoryCollectionRepository {
             category.setId((long) categoryList.size() + 1);
             categoryList.add(category);
             return category;
-        } else {
-            JOptionPane.showMessageDialog(null, "Category already exists!");
         }
-        return category;
+
+        return null;
     }
 
 }

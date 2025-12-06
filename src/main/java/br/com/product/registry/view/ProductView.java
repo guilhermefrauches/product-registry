@@ -8,78 +8,71 @@ import javax.swing.*;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
-
 public class ProductView {
-
 
     public static Product form(Product product) {
 
-        Category category = null;
+        Category category = CategoryView.select(product.getCategory());
+        if (category == null) return null;
 
-        do {
-            category = CategoryView.select(product.getCategory());
-        }while (category == null);
+        String name = JOptionPane.showInputDialog(null, "Enter the product name", product.getName());
+        if (name == null) return null;
 
-
-        String name = "";
-
-        do {
-            name = JOptionPane.showInputDialog(null, "Enter the product name", product.getName());
-        }while (name.equals(""));
-
-
-        String description = "";
-
-        do {
-            description = JOptionPane.showInputDialog(null, "Enter the product description",  product.getDescription());
-        }while (description.equals(""));
-
+        String description = JOptionPane.showInputDialog(null, "Enter the product description", product.getDescription());
+        if (description == null) return null;
 
         double price = 0;
+        boolean validPrice = false;
 
-        do {
+        while (!validPrice) {
+            String priceInput = JOptionPane.showInputDialog(null, "Enter the product price", product.getPrice());
+
+            if (priceInput == null) return null;
+
             try {
-                price = Double.parseDouble(JOptionPane.showInputDialog(null, "Enter the product price",  product.getPrice()));
-            }catch (Exception ex){
-                price = 0;
+                price = Double.parseDouble(priceInput);
+                if (price > 0) {
+                    validPrice = true;
+                } else {
+                    JOptionPane.showMessageDialog(null, "Price must be greater than zero.");
+                }
+            } catch (NumberFormatException ex) {
+                JOptionPane.showMessageDialog(null, "Invalid price! Please numbers only.");
             }
-        }while (price <= 0);
+        }
 
-
-        Product ret = product
+        return product
                 .setCategory(category)
                 .setName(name)
                 .setDescription(description)
                 .setCreationDate(LocalDateTime.now())
                 .setPrice(BigDecimal.valueOf(price));
-
-        return ret;
     }
 
-    public void sucess (){
-        JOptionPane.showMessageDialog(null, "Product saved successfully!");
-    }
-
-    public static void sucess(Product product){
+    public static void sucess(Product product) {
         JOptionPane.showMessageDialog(null, "Product " + product.getName() + " saved successfully!");
     }
-    public static Product select (Product product) {
-        Product ret = (Product) JOptionPane.showInputDialog(
+
+    public static Product select(Product product) {
+        Object selection = JOptionPane.showInputDialog(
                 null,
-                "Select an product:",
+                "Select a product:",
                 "Menu",
                 JOptionPane.QUESTION_MESSAGE,
                 null,
                 ProductsCollectionRepository.findAll().toArray(),
-                product == null ? 1 : product);
-        return ret;
+                product == null ? null : product);
+
+        return (Product) selection;
     }
 
-    public static void  update (Product product) {
-        form(product);
-        sucess(product);
-        show(product);
+    public static void update(Product product) {
+        Product updatedProduct = form(product);
 
+        if (updatedProduct != null) {
+            sucess(updatedProduct);
+            show(updatedProduct);
+        }
     }
 
     public static void show(Product product) {

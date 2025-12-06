@@ -6,22 +6,17 @@ import br.com.product.registry.repository.CategoryCollectionRepository;
 import javax.swing.*;
 
 public class CategoryView {
-    static CategoryCollectionRepository repository;
 
     public static Category select (Category category) {
-        Category ret = (Category) JOptionPane.showInputDialog(
+        Object ret = JOptionPane.showInputDialog(
                 null,
                 "Select an option:",
                 "Menu",
                 JOptionPane.QUESTION_MESSAGE,
                 null,
-                repository.findAll().toArray(),
-                category == null ? 1 : category);
-        return ret;
-    }
-
-    public void sucess (){
-        JOptionPane.showMessageDialog(null, "Category saved successfully!");
+                CategoryCollectionRepository.findAll().toArray(),
+                category == null ? null : category);
+        return (Category) ret;
     }
 
     public void sucess (Category category){
@@ -30,8 +25,11 @@ public class CategoryView {
 
     public static Category form(Category category){
         String name = JOptionPane.showInputDialog(null, "Enter the category name", category!= null? category.getName(): "");
-        return  new Category(name);
+
+        if (name == null || name.trim().isEmpty()) {
+            return null;
+        }
+
+        return new Category(name);
     }
-
-
 }

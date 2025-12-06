@@ -3,36 +3,18 @@ package br.com.product.registry.repository;
 import br.com.product.registry.model.Category;
 import br.com.product.registry.model.Product;
 
-import javax.swing.*;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
-
+import java.util.ArrayList;
 import java.util.List;
-import java.util.Vector;
-
 
 public class ProductsCollectionRepository {
 
-    private static List <Product>  productList;
+    private static List<Product> productList = new ArrayList<>();
 
-    static  {
 
-        productList = new Vector<Product>();
 
-        Product cell = new Product();
-
-        cell.setName("Iphone 14 Pro Max")
-                .setDescription("Cell Phone of the apple")
-                .setCategory(CategoryCollectionRepository.findById(2L))
-                .setCreationDate(LocalDateTime.now())
-                .setPrice(BigDecimal.valueOf(12000));
-
-        save(cell);
-
-    }
-
-    public static List <Product> findAll()
-    {
+    public static List<Product> findAll() {
         return productList;
     }
 
@@ -41,11 +23,8 @@ public class ProductsCollectionRepository {
             product.setId((long) productList.size() + 1);
             productList.add(product);
             return product;
-        } else  {
-            JOptionPane.showMessageDialog(null, "Product already exists!");
-            return null;
         }
-
+        return null;
     }
 
     public static List<Product> findByCategory(Category category) {
