@@ -27,7 +27,10 @@ public class CategoryCollectionRepository {
     }
 
     public static Category save(Category category) {
-        if (!categoryList.contains(category)) {
+        boolean exists = categoryList.stream()
+                .anyMatch(c -> c.getName().trim().equalsIgnoreCase(category.getName().trim()));
+
+        if (!exists) {
             category.setId((long) categoryList.size() + 1);
             categoryList.add(category);
             return category;
