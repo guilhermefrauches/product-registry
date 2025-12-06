@@ -7,7 +7,7 @@
 
 ## 🎯 Objetivo do Projeto
 Este projeto marca o encerramento do meu ciclo de estudos em **Java Puro (Java SE)**.
-O foco aqui não foi utilizar frameworks prontos, mas sim entender **como as coisas funcionam por baixo do capô**: arquitetura em camadas, manipulação de coleções em memória e lógica de programação.
+O foco aqui não foi utilizar frameworks prontos, mas sim entender **como as coisas funcionam**: arquitetura em camadas, manipulação de coleções em memória e lógica de programação.
 
 ---
 
